@@ -51,7 +51,7 @@ namespace Plugin.BLE.iOS
 
                 //handle PoweredOff state
                 //notify subscribers about disconnection
-                if (_centralManager.State == CBCentralManagerState.PoweredOff)
+                if (_centralManager.State == CBManagerState.PoweredOff)
                 {
                     foreach (var device in ConnectedDeviceRegistry.Values.ToList())
                     {
@@ -145,7 +145,7 @@ namespace Plugin.BLE.iOS
         protected override async Task StartScanningForDevicesNativeAsync(ScanFilterOptions scanFilterOptions, bool allowDuplicatesKey, CancellationToken scanCancellationToken)
         {
             // Wait for the PoweredOn state
-            await WaitForState(CBCentralManagerState.PoweredOn, scanCancellationToken).ConfigureAwait(false);
+            await WaitForState(CBManagerState.PoweredOn, scanCancellationToken).ConfigureAwait(false);
 
             if (scanCancellationToken.IsCancellationRequested)
                 throw new TaskCanceledException("StartScanningForDevicesNativeAsync cancelled");
@@ -212,7 +212,7 @@ namespace Plugin.BLE.iOS
         public override async Task<IDevice> ConnectToKnownDeviceAsync(Guid deviceGuid, ConnectParameters connectParameters = default(ConnectParameters), CancellationToken cancellationToken = default(CancellationToken))
         {
             // Wait for the PoweredOn state
-            await WaitForState(CBCentralManagerState.PoweredOn, cancellationToken, true);
+            await WaitForState(CBManagerState.PoweredOn, cancellationToken, true);
 
             if (cancellationToken.IsCancellationRequested)
                 throw new TaskCanceledException("ConnectToKnownDeviceAsync cancelled");
@@ -234,7 +234,7 @@ namespace Plugin.BLE.iOS
 #endif
                 peripherial = systemPeripherials.SingleOrDefault(p =>
 #if __IOS__
-                p.UUID.Equals(cbuuid)
+                p.Identifier.Equals(cbuuid)
 #else
                  p.Identifier.Equals(uuid)
 #endif
@@ -277,7 +277,7 @@ namespace Plugin.BLE.iOS
             return nativeDevices.Select(d => new Device(this, d, _bleCentralManagerDelegate)).Cast<IDevice>().ToList();
         }
 
-        private async Task WaitForState(CBCentralManagerState state, CancellationToken cancellationToken, bool configureAwait = false)
+        private async Task WaitForState(CBManagerState state, CancellationToken cancellationToken, bool configureAwait = false)
         {
             Trace.Message("Adapter: Waiting for state: " + state);
 

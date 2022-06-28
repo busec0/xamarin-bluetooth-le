@@ -17,7 +17,7 @@ namespace Plugin.BLE.iOS
         public override Guid Id => NativeService.UUID.GuidFromUuid();
         public override bool IsPrimary => NativeService.Primary;
 
-        public Service(CBService nativeService, IDevice device, IBleCentralManagerDelegate bleCentralManagerDelegate) 
+        public Service(CBService nativeService, IDevice device, IBleCentralManagerDelegate bleCentralManagerDelegate)
             : base(device, nativeService)
         {
             _device = device.NativeDevice as CBPeripheral;
@@ -55,8 +55,8 @@ namespace Plugin.BLE.iOS
                         complete(characteristics);
                     }
                 },
-                subscribeComplete: handler => _device.DiscoveredCharacteristic += handler,
-                unsubscribeComplete: handler => _device.DiscoveredCharacteristic -= handler,
+                subscribeComplete: handler => _device.DiscoveredCharacteristics += handler,
+                unsubscribeComplete: handler => _device.DiscoveredCharacteristics -= handler,
                 getRejectHandler: reject => ((sender, args) =>
                 {
                     if (args.Peripheral.Identifier == _device.Identifier)
