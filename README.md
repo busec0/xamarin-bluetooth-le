@@ -1,7 +1,12 @@
 # <img src="icon_small.png" width="71" height="71"/> Bluetooth LE plugin for Xamarin 
-[Bitrise build status:](https://app.bitrise.io/app/3fe54d0a5f43c2bf) ![Build Status](https://app.bitrise.io/app/3fe54d0a5f43c2bf/status.svg?token=i9LUY4rIecZWd_3j7hwXgw) 
 
-Xamarin and MvvMCross plugin for accessing the bluetooth functionality. The plugin is loosely based on the BLE implementation of [Monkey Robotics](https://github.com/xamarin/Monkey.Robotics).
+Forked from https://github.com/xabre/xamarin-bluetooth-le. 
+
+Added support for net6-ios and net6-android (MAUI apps). 
+
+Removed MvvmCross plugin and MacOS + UWP targets. Only support iOS and Android. 
+
+Xamarin plugin for accessing the bluetooth functionality. The plugin is loosely based on the BLE implementation of [Monkey Robotics](https://github.com/xamarin/Monkey.Robotics).
 
 **Important Note:** With the term *"vanilla"* we mean the non MvvmCross/pure Xamarin version. You **can** use it without MvvmCross, if you download the vanilla package.
 
@@ -9,10 +14,8 @@ Xamarin and MvvMCross plugin for accessing the bluetooth functionality. The plug
 
 | Platform  | Version | Limitations |
 | ------------- | ----------- | ----------- |
-| Xamarin.Android | 4.3 |  |
-| Xamarin.iOS     | 7.0 |  |
-| Xamarin.Mac     | 10.9 (Mavericks) |  >= v2.1.0 |
-| UWP             | 1709 - 10.0.16299 (Fall Creators Update) | TBA |
+| net6.0-android | 4.3 |  |
+| net6.0-ios     | 7.0 |  |
 
 [Changelog](doc/changelog.md)
 
