@@ -1,5 +1,8 @@
 # <img src="icon_small.png" width="71" height="71"/> Bluetooth LE plugin for Xamarin 
 
+### UPDATE:  This is deprecated! https://github.com/dotnet-bluetooth-le/dotnet-bluetooth-le added support for .NET 6 and MAUI, use the official package!
+
+- - - - - - 
 Forked from https://github.com/xabre/xamarin-bluetooth-le. 
 
 Added support for net6-ios and net6-android (MAUI apps). 
