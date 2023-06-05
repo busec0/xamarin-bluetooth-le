@@ -328,7 +328,18 @@ namespace Plugin.BLE.Android
                     records.Add(new AdvertisementRecord(AdvertisementRecordType.ServiceData, result.ScanRecord.ServiceData));
                 }*/
 
-                var device = new Device(_adapter, result.Device, null, result.Rssi, result.ScanRecord.GetBytes());
+                try 
+                {
+                    var device = new Device(_adapter, result.Device, null, result.Rssi, result.ScanRecord.GetBytes());
+
+                    _adapter.HandleDiscoveredDevice(device);
+                }
+                catch (Exception ex)
+                {
+                    Trace.Message("Adapter: Failed to process device {0}", result.ScanRecord.DeviceName);
+                    Trace.Message("Exception: ", ex);
+                    return;
+                }
 
                 //Device device;
                 //if (result.ScanRecord.ManufacturerSpecificData.Size() > 0)
@@ -344,9 +355,6 @@ namespace Plugin.BLE.Android
                 //{
                 //    device = new Device(result.Device, null, null, result.Rssi, new byte[0]);
                 //}
-
-                _adapter.HandleDiscoveredDevice(device);
-
             }
         }
     }

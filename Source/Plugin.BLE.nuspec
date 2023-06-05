@@ -1,7 +1,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Plugin.BLE.Net</id>
-    <version>3.0.0-alpha.1</version>
+    <version>3.0.0-alpha.2</version>
     <title> Bluetooth LE Plugin for NET6 - iOS and Android</title>
     <authors>Adrian Seceleanu, Sven-Michael Stübe, Sergiu Bulzan</authors>
     <owners>Adrian Seceleanu, Sven-Michael Stübe, Sergiu Bulzan</owners>
@@ -16,6 +16,8 @@
     <iconUrl>https://raw.githubusercontent.com/xabre/xamarin-bluetooth-le/master/icon_small.png</iconUrl>
     <icon>icon_small.png</icon>
     <releaseNotes>
+      [3.0.0-alpha2]
+      Fix for device processing. 
       [3.0.0-alpha1]
       Removed MVVMCross support. Removed MacoS and UWP targets. 
       Re-targeted the projects to net6. 
